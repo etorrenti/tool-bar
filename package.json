@@ -1,6 +1,6 @@
 {
   "name": "tool-bar",
-  "version": "1.1.4",
+  "version": "1.1.6",
   "description": "Package providing customisable tool bar",
   "keywords": [
     "toolbar",
@@ -10,7 +10,8 @@
   "license": "MIT",
   "main": "./lib/tool-bar",
   "repository": {
-    "url": "https://github.com/suda/tool-bar"
+    "type": "git",
+    "url": "git@github.com:suda/toolbar.git"
   },
   "scripts": {
     "lint": "eslint --format tap . && remark ."
@@ -25,7 +26,7 @@
     "remark-lint": "^6.0.1"
   },
   "engines": {
-    "atom": ">=1.6.0"
+    "atom": ">=1.20.0"
   },
   "providedServices": {
     "tool-bar": {

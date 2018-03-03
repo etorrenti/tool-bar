@@ -105,6 +105,25 @@ describe('Tool Bar package', () => {
         expect(tooltip.outerHTML.indexOf('About Atom')).not.toBe(-1);
       });
 
+      it('with tooltip object', () => {
+        toolBarAPI.addButton({
+          icon: 'octoface',
+          callback: 'application:about',
+          tooltip: {
+            html: false,
+            title: '<h1>About Atom</h1>'
+          }
+        });
+        expect(toolBar.children.length).toBe(1);
+        const element = toolBar.firstChild;
+        element.dispatchEvent(new CustomEvent('mouseenter', {bubbles: false}));
+        element.dispatchEvent(new CustomEvent('mouseover', {bubbles: true}));
+        advanceClock(1000);
+        const tooltip = document.body.querySelector('.tooltip');
+        expect(tooltip).not.toBeNull();
+        expect(tooltip.outerHTML.indexOf('&lt;h1&gt;About Atom&lt;/h1&gt;')).not.toBe(-1);
+      });
+
       it('using default iconset', () => {
         jasmine.attachToDOM(toolBar);
         toolBarAPI.addButton({
@@ -227,13 +246,14 @@ describe('Tool Bar package', () => {
 
       it('clicking button with function callback', () => {
         const spy = jasmine.createSpy();
-        toolBarAPI.addButton({
+        const button = toolBarAPI.addButton({
           icon: 'octoface',
           callback: spy
         });
         jasmine.attachToDOM(toolBar);
         toolBar.firstChild.click();
         expect(spy).toHaveBeenCalled();
+        expect(spy.mostRecentCall.object).toBe(button);
       });
 
       it('clicking button with function callback containing data', () => {
