@@ -11,11 +11,7 @@
   "main": "./lib/tool-bar",
   "repository": {
     "type": "git",
-<<<<<<< HEAD
     "url": "https://github.com/etorrenti/tool-bar.git"
-=======
-    "url": "https://github.com/suda/toolbar.git"
->>>>>>> upstream/master
   },
   "scripts": {
     "lint": "eslint --format tap . && remark ."
